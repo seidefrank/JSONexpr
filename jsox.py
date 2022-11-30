@@ -16,10 +16,10 @@ Example input string:
 Copyright (c) 2022 Frank Seide. MIT License.
 """
 
-def to_json(jsox):
+def to_json(jsox, interpreter="node"):
     import subprocess
     res = subprocess.run(
-        ["node"],  # run via node.js
+        [interpreter],  # binary to run, typ. node.js
         # wrap the expression into code that evaluates it and writes it out as JSON
         input=f'process.stdout.write(JSON.stringify(({jsox}), null, "  "))',
         text=True,  # input is text
@@ -30,6 +30,9 @@ def to_json(jsox):
     else:
         raise ValueError(res.stderr)
 
-def loads(jsox):
+def loads(jsox, **kw):
     import json
-    return json.loads(to_json(jsox))
+    return json.loads(to_json(jsox), **kw)
+
+def load(fp, **kw):
+    return loads(fp.read(), **kw)
