@@ -18,7 +18,6 @@ valid JavaScript. Example input string:
 
 def jsonex_to_json(jsonex):
     import subprocess
-    print(f'process.stdout.write(JSON.stringify(({jsonex}), null, "  "))')
     return subprocess.run(
         ["node"],  # run via node.js
         input=f'process.stdout.write(JSON.stringify(({jsonex}), null, "  "))',
