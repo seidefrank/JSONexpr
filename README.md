@@ -1,26 +1,32 @@
-# JSONexpr—JSON with expressions for config files
+# JSOX—JSON with eXpressions for config files
 
 Variables, expressions, and comments in your JSON config files. Finally.
 
-This repository contains a near-trivial Python function, `jsonexpr_to_json()`,
-that converts a _JSON expression_ to valid JSON. We define a JSON expression
-as a JavaScript expression that evaluates to JSON. You can use variables,
-JavaScript expressions, and... comments. Use this as a preprocessor
-when reading JSON-based configuration files.
+JSON is increasingly used for configuration files written by humans. However,
+originally intended for machine-to-machine communication, JSON is not very well
+suited. For example, it cannot express how different values in a configuration
+depend on each other, and it is not even allowed to state that in a comment.
 
-While JSON is meant for machine-to-machine communication, JSONexpr is for humans,
-especially those who need to write JSON configuration files.
+Enter JSOX, or JavaScript Object eXpressions. JSOX extends the expressiveness
+of JSON by allowing full JavaScript syntax—variables, expressions, comments—in
+your JSON files.
 
-Example:
+The `jsox` module contains one function, `jsox.to_json()`, which accepts a JSOX
+expression and converts it to valid JSON by invoking a JavaScript interpreter.
+Use this as a preprocessor when reading JSON-based configuration files.
+
+Example JSOX:
 ```
 // define variables, comma-separated (not: semicolon)
 greeting = "Hello",  // line-end comment
 addressee = "World",
-{ // JSON follows, but it allows expressions in these variables
-  "text": greeting + " " + addressee + "!",  // JavaScript expression
+{ 
+  // JSON follows, but it allows expressions in these variables
+  // (and you can omit the quotes for the key names as well)
+  text: greeting + " " + addressee + "!",  // JavaScript expression
 }
 ```
-If you pass this to `jsonexpr_to_json()`, the resulting string is the following
+If you pass this to `jsox.to_json()`, the resulting string is the following
 proper JSON:
 ```
 {
@@ -48,11 +54,16 @@ args = json.loads(config)
 ```
 Just change it to
 ```
-import json
-from jsonexpr import jsonexpr_to_json
+import json, jsox
 config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
-config = jsonexpr_to_json(config_ex)  # evaluate to JSON
+config = jsox.to_json(config_ex)  # evaluate to JSON
 args = json.loads(config)  # as before
+```
+The module also provides a convenience function, `jsox.loads()`:
+```
+import jsox  # instead of json
+config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
+args = jsox.loads(config_ex)  # looks like before
 ```
 
 ### How does it work?
