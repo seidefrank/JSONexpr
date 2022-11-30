@@ -10,7 +10,7 @@ Example input string:
   greeting = "Hello",
   addressee = "World",
   { // JSON but allowing expressions in these variables
-    "text": greeting + " " + adressee + "!",
+    "text": greeting + " " + addressee + "!",
   }
 
 Copyright (c) 2022 Frank Seide. MIT License.
