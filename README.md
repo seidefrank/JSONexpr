@@ -57,10 +57,15 @@ args = json.loads(config)  # as before
 
 ### How does it work?
 
-Any JSON is valid also always a valid JavaScript expression. So we simply invoke
-a JavaScript interpreter to evaluate the JSON. If your JSON includes expressions,
-such as `1 + 2`, the JavaScript interpreter will evaluate them. If your JSON
-contains comments, no problem, the interpreter will ignore them. The result
+Any JSON is valid also always valid JavaScript. To be precise, it is a valid JavaScript
+_expression_. Any JavaScript interpreter can ingest JSON and understand it as a valid
+expression of an array or dictionary literal.
+
+There is one difference, though, between reading JSON with a JSON parser vs. interpreting
+it as JavScript: When interpreted as JavaScript, it may contain additional valid
+JavaScript constructs that are not allowed in JSON. For example, basic expressions like
+`1 + 1` are invalid in JSON, while a JavaScript interpreter will just compute it as `2`.
+If your JSON contains comments, no problem, the interpreter will ignore them. The result
 is then formatted again into JSON/
 
 The magic lies in JavaScript's _comma operator_. It allows to assign variables
