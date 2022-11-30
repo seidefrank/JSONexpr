@@ -24,6 +24,10 @@ proper JSON:
   "text": "Hello World!"
 }
 ```
+Notice how the expression, `greeting + " " + world + "!"`, was replaced by
+its actual value, and how all variables and comments were removed. The result
+is fully compliant JSON, acceptable to any and all JSON parsers, for example
+JSON-based configuration-file readers.
 
 ### Example use
 
