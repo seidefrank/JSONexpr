@@ -1,4 +1,4 @@
-# JSONexpr -- JSON expressions for humans who write config files
+# JSONexpr -- JSON with expressions for humans who write config files
 
 Variables, expressions, and comments in your JSON config files. Finally.
 
