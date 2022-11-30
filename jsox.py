@@ -18,7 +18,7 @@ Copyright (c) 2022 Frank Seide. MIT License.
 
 def to_json(jsox):
     import subprocess
-    return subprocess.run(
+    res = subprocess.run(
         ["node"],  # run via node.js
         # wrap the expression into code that evaluates it and writes it out as JSON
         input=f'process.stdout.write(JSON.stringify(({jsox}), null, "  "))',
