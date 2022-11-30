@@ -1,13 +1,11 @@
 """
-Evaluate a JSON-like JavaScript expression into JSON. This allows better readable
-configuration files, allowing
-* comments (!)
-* variables (!!)
-* expressions (!!!)
+JSOX -- JavaScript Object eXpressions.
 
-Normally, the input is mostly JSON, with a few variables and expressions
-sprinkled in. This leverages the fact that (var = val, expr_of(var)) is
-valid JavaScript. Example input string:
+Write JSON but with JavaScript expressions, variables, and comments -- JSOX.
+This function will run the JSOX string through a JavaScript interpreter
+and return the result as valid JSON.
+
+Example input string:
 
   greeting = "Hello",
   addressee = "World",
@@ -18,7 +16,7 @@ valid JavaScript. Example input string:
 Copyright (c) 2022 Frank Seide. MIT License.
 """
 
-def jsonexpr_to_json(jsonexpr):
+def to_json(jsonexpr):
     import subprocess
     return subprocess.run(
         ["node"],  # run via node.js
@@ -26,6 +24,10 @@ def jsonexpr_to_json(jsonexpr):
         input=f'process.stdout.write(JSON.stringify(({jsonexpr}), null, "  "))',
         text=True,  # input is text
         capture_output=True  # read result from stdout
-    ).stdout
+    )
+    if res.returncode == 0:
+        return res.stdout
+    else:
+        raise ValueError(res.stderr)
 
 # That's all.
