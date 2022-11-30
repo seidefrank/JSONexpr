@@ -49,21 +49,19 @@ many instructions on installing node.js on your machine.
 Assume you currently read your configuration file as follows:
 ```
 import json
-config = open(CONFIGPATH, "r").read()  # read config into a string
-args = json.loads(config)
+args = json.loads(open(CONFIGPATH, "r"))
 ```
 Just change it to
 ```
-import json, jsox
-config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
-config = jsox.to_json(config_ex)  # evaluate to JSON
-args = json.loads(config)  # as before
+import jsox  # instead of json
+args = jsox.load(open(CONFIGPATH, "r"))
 ```
 The module also provides a convenience function, `jsox.loads()`:
 ```
-import jsox  # instead of json
-config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
-args = jsox.loads(config_ex)  # looks like before
+import json, jsox
+config_ex = open(CONFIGPATH, "r").read()
+config = jsox.to_json(config_ex)
+args = json.loads(config)
 ```
 
 ### How does it work?
