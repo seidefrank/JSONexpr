@@ -1,6 +1,6 @@
 # JSON expressions
 
-Variables, expressions, and comments (!) in JSON. Finally.
+Variables, expressions, and comments (!) in JSON config files. Finally.
 
 This repository contains a near-trivial Python function, `jsonex_to_json()`,
 that converts a _JSON expression_ to valid JSON. We define a JSON expression
