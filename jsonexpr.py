@@ -27,4 +27,4 @@ def jsonexpr_to_json(jsonex):
         capture_output=True  # read result from stdout
     ).stdout
 
-# That's it.
+# That's all.
