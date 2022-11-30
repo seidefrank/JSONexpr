@@ -11,9 +11,10 @@ Enter JSOX, or JavaScript Object eXpressions. JSOX extends the expressiveness
 of JSON by allowing full JavaScript syntax—variables, expressions, comments—in
 your JSON files.
 
-The `jsox` module contains one function, `jsox.to_json()`, which accepts a JSOX
-expression and converts it to valid JSON by invoking a JavaScript interpreter.
-Use this as a preprocessor when reading JSON-based configuration files.
+The `jsox` module contains two functions, `jsox.load()` and `jsox.loads()`,
+which are drop-in replacements for their JSON equivalents `json.load()` and
+`json.loads()`. If your code uses a different JSON reader, you can convert a
+JSOX string to valid JSON via `jsox.to_json()`.
 
 Example JSOX:
 ```
@@ -26,8 +27,8 @@ addressee = "World",
   text: greeting + " " + addressee + "!",  // JavaScript expression
 }
 ```
-If you pass this to `jsox.to_json()`, the resulting string is the following
-proper JSON:
+The functions in the `jsox` module will invoke a JavaScript interpreter to
+convert this into the following proper JSON:
 ```
 {
   "text": "Hello World!"
@@ -37,12 +38,6 @@ Notice how the expression, `greeting + " " + addressee + "!"`, was replaced by
 its actual value, and how all variables and comments were removed. The result
 is fully compliant JSON, acceptable to any and all JSON parsers, for example
 JSON-based configuration-file readers.
-
-### Prerequisites
-
-Your system must have _node.js_ installed. You are set up correctly when the
-command `node --help` responds with node.js' help screen. The Internet has
-many instructions on installing node.js on your machine.
 
 ### Example use
 
@@ -63,6 +58,18 @@ config_ex = open(CONFIGPATH, "r").read()
 config = jsox.to_json(config_ex)
 args = json.loads(config)
 ```
+
+### Prerequisites
+
+Your system must have _node.js_ installed. You are set up correctly when the
+command `node --help` responds with node.js' help screen.
+
+For example, using the `yum` package manager, the command is just:
+```
+sudo yum install nodejs
+```
+Instructions for installing specific versions or using other package managers
+can easily be found on the Internet.
 
 ### How does it work?
 
