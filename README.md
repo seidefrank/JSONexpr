@@ -51,12 +51,12 @@ Assume you currently read your configuration file as follows:
 import json
 args = json.loads(open(CONFIGPATH, "r"))
 ```
-Just change it to
+Just change it to this:
 ```
 import jsox  # instead of json
 args = jsox.load(open(CONFIGPATH, "r"))
 ```
-The module also provides a convenience function, `jsox.loads()`:
+Under the hood, it is equivalent to this:
 ```
 import json, jsox
 config_ex = open(CONFIGPATH, "r").read()
