@@ -1,23 +1,26 @@
-# JSON expressions
+# JSONexpr -- JSON expressions for humans who write config files
 
-Variables, expressions, and comments (!) in JSON config files. Finally.
+Variables, expressions, and comments in your JSON config files. Finally.
 
-This repository contains a near-trivial Python function, `jsonex_to_json()`,
+This repository contains a near-trivial Python function, `jsonexpr_to_json()`,
 that converts a _JSON expression_ to valid JSON. We define a JSON expression
 as a JavaScript expression that evaluates to JSON. You can use variables,
 JavaScript expressions, and... comments. Use this as a preprocessor
 when reading JSON-based configuration files.
+
+While JSON is meant for machine-to-machine communication, JSONexpr is for humans,
+especially those who need to write JSON configuration files.
 
 Example:
 ```
 // define variables, comma-separated (not: semicolon)
 greeting = "Hello",  // line-end comment
 addressee = "World",
-{ // JSON but allowing expressions in these variables
+{ // JSON follows, but it allows expressions in these variables
   "text": greeting + " " + addressee + "!",  // JavaScript expression
 }
 ```
-If you pass this to `jsonex_to_json()`, the resulting string is the following
+If you pass this to `jsonexpr_to_json()`, the resulting string is the following
 proper JSON:
 ```
 {
@@ -46,9 +49,9 @@ args = json.loads(config)
 Just change it to
 ```
 import json
-from jsonex import jsonex_to_json
+from jsonexpr import jsonexpr_to_json
 config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
-config = jsonex_to_json(config_ex)  # evaluate to JSON
+config = jsonexpr_to_json(config_ex)  # evaluate to JSON
 args = json.loads(config)  # as before
 ```
 
@@ -65,3 +68,6 @@ _inside_ expressions.
 For example, `(x = 42, y = 13, x + y)` is a valid JavaScript expression that
 defines variables `x` and `y`, assigns values to them, and then evaluates to
 `x + y`, all in one go. The value of this expression is i`55`.
+
+The JavaScript is interpreted using the node.js interpreter, which you must have
+installed on your system.
