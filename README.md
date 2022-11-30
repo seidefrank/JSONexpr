@@ -33,12 +33,13 @@ JSON-based configuration-file readers.
 
 Assume you currently read your configuration file as follows:
 ```
-config = readalllines(open(CONFIGPATH))  # read config into a string
+config = open(CONFIGPATH, "r").read()  # read config into a string
 args = json.parse(config)
 ```
 Just change it to
 ```
-config_ex = readalllines(open(CONFIGPATH))  # read config into a string
+from jsonex import jsonex_to_json
+config_ex = open(CONFIGPATH, "r").read()  # read config expression into a string
 config = jsonex_to_json(config_ex)  # evaluate to JSON
 args = json.parse(config)  # as before
 ```
