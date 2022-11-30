@@ -84,11 +84,11 @@ JavaScript constructs that are not allowed in JSON. For example, basic expressio
 If your JSON contains comments, no problem, the interpreter will ignore them. The result
 is then formatted again into JSON/
 
-The magic lies in JavaScript's _comma operator_. It allows to assign variables
-_inside_ expressions.
+Variables can be defined courtesy of JavaScript's _comma operator_, which allows to
+assign variables _inside_ expressions, if separated by commas.
 For example, `(x = 42, y = 13, x + y)` is a valid JavaScript expression that
 defines variables `x` and `y`, assigns values to them, and then evaluates to
-`x + y`, all in one go. The value of this expression is i`55`.
+`x + y`, all in one go. The value of this expression is `55`.
 
 The JavaScript is interpreted using the node.js interpreter, which you must have
 installed on your system.
