@@ -14,7 +14,7 @@ Example:
 greeting = "Hello",  // line-end comment
 addressee = "World",
 { // JSON but allowing expressions in these variables
-  "text": greeting + " " + world + "!",  // JavaScript expression
+  "text": greeting + " " + addressee + "!",  // JavaScript expression
 }
 ```
 If you pass this to `jsonex_to_json()`, the resulting string is the following
@@ -24,7 +24,7 @@ proper JSON:
   "text": "Hello World!"
 }
 ```
-Notice how the expression, `greeting + " " + world + "!"`, was replaced by
+Notice how the expression, `greeting + " " + addressee + "!"`, was replaced by
 its actual value, and how all variables and comments were removed. The result
 is fully compliant JSON, acceptable to any and all JSON parsers, for example
 JSON-based configuration-file readers.
