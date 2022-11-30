@@ -29,6 +29,12 @@ its actual value, and how all variables and comments were removed. The result
 is fully compliant JSON, acceptable to any and all JSON parsers, for example
 JSON-based configuration-file readers.
 
+### Prerequisites
+
+Your system must have _node.js_ installed. You are set up correctly when the
+command `node --help` responds with node.js' help screen. The Internet has
+many instructions on installing node.js on your machine.
+
 ### Example use
 
 Assume you currently read your configuration file as follows:
