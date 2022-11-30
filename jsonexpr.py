@@ -18,11 +18,12 @@ valid JavaScript. Example input string:
 Copyright (c) 2022 Frank Seide. MIT License.
 """
 
-def jsonexpr_to_json(jsonex):
+def jsonexpr_to_json(jsonexpr):
     import subprocess
     return subprocess.run(
         ["node"],  # run via node.js
-        input=f'process.stdout.write(JSON.stringify(({jsonex}), null, "  "))',
+        # wrap the expression into code that evaluates it and writes it out as JSON
+        input=f'process.stdout.write(JSON.stringify(({jsonexpr}), null, "  "))',
         text=True,  # input is text
         capture_output=True  # read result from stdout
     ).stdout
