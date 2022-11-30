@@ -14,6 +14,8 @@ valid JavaScript. Example input string:
   { // JSON but allowing expressions in these variables
     "text": greeting + " " + world,
   }
+
+Copyright (c) 2022 Frank Seide. MIT License.
 """
 
 def jsonex_to_json(jsonex):
