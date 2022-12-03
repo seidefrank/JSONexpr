@@ -31,6 +31,12 @@ import shutil
 import subprocess
 
 def to_json(jsox: str, interpreter_args: list[str]=["node"]) -> str:
+    """Execute ``jsox`` (a ``str`` instance containing a JSOX expression) as a single
+    JavaScript expression, and serialize the result to a JSON document.
+    
+    ``interpreter_args`` (a ``list[str]``) is a command to invoke the JavaScript
+    interpreter.
+    """
     binary = shutil.which(interpreter_args[0])
     if not binary:
         raise ValueError("JavaScript interpreter not found: " + interpreter_args[0])
