@@ -55,8 +55,10 @@ Examples:
 ]
 
 >>> s = '''
+... // simplified from https://www.drupal.org/node/2008800
+... foldersToSync = ["folder1", "folder2"],
 ... {"synced_folders": [
-...   ...["folder1", "folder2"].map(folder => (
+...   ...foldersToSync.map(folder => (
 ...    {
 ...      "host_path": "data/" + folder,
 ...      "guest_path": "/var/www/" + folder,
