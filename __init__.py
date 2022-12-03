@@ -27,7 +27,7 @@ __all__ = [
     'load', 'loads', 'to_json',
 ]
 
-__author__ = 'Frank Seide <frank.seide@gmail.com>'
+__author__ = 'Frank Seide'
 
 import json
 import shutil
