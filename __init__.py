@@ -29,10 +29,15 @@ __all__ = [
 
 __author__ = 'Frank Seide <frank.seide@gmail.com>'
 
-def to_json(jsox: str, interpreter_command: list[str]=["node"]) -> str:
+def to_json(jsox: str, interpreter_args: list[str]=["node"]) -> str:
     import subprocess
+    import shutil
+    binary = shutil.which(interpreter_args[0])
+    if not binary:
+        raise ValueError("JavaScript interpreter not found: " + interpreter_args[0])
+    interpreter_args[0] = binary
     res = subprocess.run(
-        interpreter_command,  # binary to run, typ. node.js
+        interpreter_args,  # command to run, just "node" for node.js
         # wrap the expression into code that evaluates it and writes it out as JSON
         input=f'process.stdout.write(JSON.stringify(({jsox}), null, "  "))',
         text=True,  # input is text
@@ -41,7 +46,7 @@ def to_json(jsox: str, interpreter_command: list[str]=["node"]) -> str:
     if res.returncode == 0:
         return res.stdout
     else:
-        raise ValueError("JSOX JavaScript interpretation failed\n" + res.stderr)
+        raise ValueError("Invalid JSOX, JavaScript interpretation failed\n" + res.stderr)
 
 def load(fp, **kw):
     """Deserialize ``fp`` (a ``.read()``-supporting file-like object containing
