@@ -39,7 +39,7 @@ def to_json(jsox: str, interpreter_args: list[str]=["node"]) -> str:
     """
     binary = shutil.which(interpreter_args[0])
     if not binary:
-        raise ValueError("JavaScript interpreter not found: " + interpreter_args[0])
+        raise FileNotFoundError("JavaScript interpreter not found: " + interpreter_args[0])
     interpreter_args[0] = binary
     res = subprocess.run(
         interpreter_args,  # command to run, just "node" for node.js
