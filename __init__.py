@@ -29,9 +29,11 @@ __all__ = [
 
 __author__ = 'Frank Seide <frank.seide@gmail.com>'
 
+import json
+import shutil
+import subprocess
+
 def to_json(jsox: str, interpreter_args: list[str]=["node"]) -> str:
-    import subprocess
-    import shutil
     binary = shutil.which(interpreter_args[0])
     if not binary:
         raise ValueError("JavaScript interpreter not found: " + interpreter_args[0])
@@ -58,7 +60,6 @@ def loads(jsox: str, **kw):
     """Deserialize ``s`` (a ``str`` instance containing a JSOX expression) to a
     Python object. ``kw`` are the same as ``json.loads()``.
     """
-    import json
     try:  # try first whether it is just regular JSON
         return json.loads(jsox, **kw)
     except:  # not: interpret as JavaScript
