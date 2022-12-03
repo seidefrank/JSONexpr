@@ -54,4 +54,7 @@ def loads(jsox: str, **kw):
     Python object. ``kw`` are the same as ``json.loads()``.
     """
     import json
-    return json.loads(to_json(jsox), **kw)
+    try:  # try first whether it is just regular JSON
+        return json.loads(jsox, **kw)
+    except:  # not: interpret as JavaScript
+        return json.loads(to_json(jsox), **kw)
