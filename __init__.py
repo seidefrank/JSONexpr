@@ -10,7 +10,7 @@ Example input string (JSOX):
   greeting = "Hello",
   addressee = "World",
   {
-    "text": greeting + " " + addressee + "!",
+    text: greeting + " " + addressee + "!",
   }
 
 Result (JSON):
