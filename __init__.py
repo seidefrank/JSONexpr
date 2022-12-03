@@ -53,6 +53,35 @@ Examples:
   "text": "Hello World!"
  }
 ]
+
+>>> s = '''
+... {"synced_folders": [
+...   ...["folder1", "folder2"].map(folder => (
+...    {
+...      "host_path": "data/" + folder,
+...      "guest_path": "/var/www/" + folder,
+...      "type": "nfs"
+...    }
+...    ))
+...  ]}
+... '''
+>>> import jsox
+>>> j = jsox.loads(s)
+>>> print(json.dumps(j, indent=True))
+{
+ "synced_folders": [
+  {
+   "host_path": "data/folder1",
+   "guest_path": "/var/www/folder1",
+   "type": "nfs"
+  },
+  {
+   "host_path": "data/folder2",
+   "guest_path": "/var/www/folder2",
+   "type": "nfs"
+  }
+ ]
+}
 """
 
 __version__ = "0.0"
