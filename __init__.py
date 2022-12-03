@@ -1,4 +1,4 @@
-"""
+r"""
 JSOX -- JavaScript Object eXpressions.
 
 Write JSON but with JavaScript expressions, variables, and comments -- JSOX.
@@ -16,10 +16,17 @@ Example input string:
 Copyright (c) 2022 Frank Seide. MIT License.
 """
 
-def to_json(jsox, interpreter="node"):
+__version__ = '0.0'
+__all__ = [
+    'load', 'loads', 'to_json',
+]
+
+__author__ = 'Frank Seide <frank.seide@gmail.com>'
+
+def to_json(jsox: str, interpreter_command: list=["node"]) -> str:
     import subprocess
     res = subprocess.run(
-        [interpreter],  # binary to run, typ. node.js
+        interpreter_command,  # binary to run, typ. node.js
         # wrap the expression into code that evaluates it and writes it out as JSON
         input=f'process.stdout.write(JSON.stringify(({jsox}), null, "  "))',
         text=True,  # input is text
@@ -30,7 +37,7 @@ def to_json(jsox, interpreter="node"):
     else:
         raise ValueError(res.stderr)
 
-def loads(jsox, **kw):
+def loads(jsox: str, **kw):
     import json
     return json.loads(to_json(jsox), **kw)
 
