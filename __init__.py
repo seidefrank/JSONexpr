@@ -5,12 +5,18 @@ Write JSON but with JavaScript expressions, variables, and comments -- JSOX.
 This function will run the JSOX string through a JavaScript interpreter
 and return the result as valid JSON.
 
-Example input string:
+Example input string (JSOX):
 
   greeting = "Hello",
   addressee = "World",
-  { // JSON but allowing expressions in these variables
+  {
     "text": greeting + " " + addressee + "!",
+  }
+
+Result (JSON):
+
+  {
+    "text": "Hello World!",
   }
 
 Copyright (c) 2022 Frank Seide. MIT License.
