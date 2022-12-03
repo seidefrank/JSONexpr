@@ -41,7 +41,7 @@ def to_json(jsox: str, interpreter_command: list[str]=["node"]) -> str:
     if res.returncode == 0:
         return res.stdout
     else:
-        raise ValueError(res.stderr)
+        raise ValueError("JSOX JavaScript interpretation failed\n" + res.stderr)
 
 def load(fp, **kw):
     """Deserialize ``fp`` (a ``.read()``-supporting file-like object containing
