@@ -65,6 +65,8 @@ You can also define functions in JSOX. Here is a collection of useful functions:
 ```
 // Helper to repeat a list
 repeat = ((n,a) => [].concat(...new Array(n).fill(a))),
+// Helper to generate range [0..n-1], for use with .map()
+range = (n) => [...Array(n).keys()],
 ```
 
 ### Prerequisites
