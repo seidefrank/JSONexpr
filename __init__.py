@@ -29,7 +29,7 @@ __all__ = [
 
 __author__ = 'Frank Seide <frank.seide@gmail.com>'
 
-def to_json(jsox: str, interpreter_command: list=["node"]) -> str:
+def to_json(jsox: str, interpreter_command: list[str]=["node"]) -> str:
     import subprocess
     res = subprocess.run(
         interpreter_command,  # binary to run, typ. node.js
