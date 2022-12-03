@@ -43,9 +43,15 @@ def to_json(jsox: str, interpreter_command: list[str]=["node"]) -> str:
     else:
         raise ValueError(res.stderr)
 
+def load(fp, **kw):
+    """Deserialize ``fp`` (a ``.read()``-supporting file-like object containing
+    a JSOX expression) to a Python object. ``kw`` are the same as ``json.load()``.
+    """
+    return loads(fp.read(), **kw)
+
 def loads(jsox: str, **kw):
+    """Deserialize ``s`` (a ``str`` instance containing a JSOX expression) to a
+    Python object. ``kw`` are the same as ``json.load()``.
+    """
     import json
     return json.loads(to_json(jsox), **kw)
-
-def load(fp, **kw):
-    return loads(fp.read(), **kw)
