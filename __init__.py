@@ -18,16 +18,13 @@ Result (JSON):
   {
     "text": "Hello World!",
   }
-
-Copyright (c) 2022 Frank Seide. MIT License.
 """
 
-__version__ = '0.0'
-__all__ = [
-    'load', 'loads', 'to_json',
-]
+__version__ = "0.0"
+__all__ = ["load", "loads", "to_json"]
 
-__author__ = 'Frank Seide'
+__author__ = "Frank Seide"
+__license__ = "MIT"
 
 import json
 import shutil
