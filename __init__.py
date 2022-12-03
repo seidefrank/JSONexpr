@@ -51,7 +51,7 @@ def load(fp, **kw):
 
 def loads(jsox: str, **kw):
     """Deserialize ``s`` (a ``str`` instance containing a JSOX expression) to a
-    Python object. ``kw`` are the same as ``jsons.load()``.
+    Python object. ``kw`` are the same as ``json.loads()``.
     """
     import json
     return json.loads(to_json(jsox), **kw)
