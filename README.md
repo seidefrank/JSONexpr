@@ -9,7 +9,7 @@ depend on each other, and it is not even allowed to state that in a comment.
 
 Enter JSOX, or JavaScript Object eXpressions. JSOX extends the expressiveness
 of JSON by allowing full JavaScript syntax—variables, expressions, comments—in
-your JSON files.
+your JSON files. All valid JSON is valid JSOX.
 
 The `jsox` module contains two functions, `jsox.load()` and `jsox.loads()`,
 which are drop-in replacements for their JSON equivalents `json.load()` and
@@ -39,7 +39,7 @@ its actual value, and how all variables and comments were removed. The result
 is fully compliant JSON, acceptable to any and all JSON parsers, for example
 JSON-based configuration-file readers.
 
-### Example use
+### How to make your code accept JSOX instead of JSON
 
 Assume you currently read your configuration file as follows:
 ```
@@ -59,17 +59,28 @@ config = jsox.to_json(config_ex)
 args = json.loads(config)
 ```
 
+### Useful tricks
+
+You can also define functions in JSOX. Here is a collection of useful functions:
+```
+// Helper to repeat a list
+repeat = ((n,a) => [].concat(...new Array(n).fill(a))),
+```
+
 ### Prerequisites
 
 Your system must have _node.js_ installed. You are set up correctly when the
 command `node --help` responds with node.js' help screen.
 
-For example, using the `yum` package manager, the command is just:
+For example, using the `yum` package manager, the command is:
 ```
 sudo yum install nodejs
 ```
-Instructions for installing specific versions or using other package managers
-can easily be found on the Internet.
+On Windows, you can use Chocolatey:
+```
+choco install nodejs
+```
+Instructions for other systems or package managers can easily be found on the Internet.
 
 ### How does it work?
 
